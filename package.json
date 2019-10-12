@@ -1,0 +1,14 @@
+{
+  "name": "speaker-interface",
+  "version": "1.0.0",
+  "description": "Speaker interface controller",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bluetooth-serial-port": "^2.2.6"
+  }
+}
