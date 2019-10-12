@@ -1,26 +1,32 @@
-var btSerial = new (require('bluetooth-serial-port')).BluetoothSerialPort();
+var bleno = require('../..');
 
-btSerial.on('found', function(address, name) {
-	btSerial.findSerialPortChannel(address, function(channel) {
-		btSerial.connect(address, channel, function() {
-			console.log('connected');
+var BlenoPrimaryService = bleno.PrimaryService;
 
-			btSerial.write(Buffer.from('my data', 'utf-8'), function(err, bytesWritten) {
-				if (err) console.log(err);
-			});
+var EchoCharacteristic = require('./characteristic');
 
-			btSerial.on('data', function(buffer) {
-				console.log(buffer.toString('utf-8'));
-			});
-		}, function () {
-			console.log('cannot connect');
-		});
+console.log('bleno - echo');
 
-		// close the connection when you're ready
-		btSerial.close();
-	}, function() {
-		console.log('found nothing');
-	});
+bleno.on('stateChange', function(state) {
+  console.log('on -> stateChange: ' + state);
+
+  if (state === 'poweredOn') {
+    bleno.startAdvertising('echo', ['ec00']);
+  } else {
+    bleno.stopAdvertising();
+  }
 });
 
-btSerial.inquire();
+bleno.on('advertisingStart', function(error) {
+  console.log('on -> advertisingStart: ' + (error ? 'error ' + error : 'success'));
+
+  if (!error) {
+    bleno.setServices([
+      new BlenoPrimaryService({
+        uuid: 'ec00',
+        characteristics: [
+          new EchoCharacteristic()
+        ]
+      })
+    ]);
+  }
+});
