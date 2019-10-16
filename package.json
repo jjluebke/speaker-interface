@@ -9,7 +9,6 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
-    "bleno": "^0.5.0",
-    "bluetooth-serial-port": "^2.2.6"
+    "bleno": "git+https://github.com/abandonware/bleno.git"
   }
 }
