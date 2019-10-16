@@ -1,5 +1,3 @@
-var util = require('util');
-
 //
 // Require bleno peripheral library.
 // https://github.com/sandeepmistry/bleno

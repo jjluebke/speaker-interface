@@ -1,12 +1,12 @@
-import { inherits } from 'util';
-import { PrimaryService } from 'bleno';
+const util = require('util')
+const bleno = require('bleno')
 
-import PizzaCrustCharacteristic from './pizza-crust-characteristic';
-import PizzaToppingsCharacteristic from './pizza-toppings-characteristic';
-import PizzaBakeCharacteristic from './pizza-bake-characteristic';
+const PizzaCrustCharacteristic = require('./pizza-crust-characteristic');
+const PizzaToppingsCharacteristic = require('./pizza-toppings-characteristic');
+const PizzaBakeCharacteristic = require('./pizza-bake-characteristic');
 
 function PizzaService(pizza) {
-    PrimaryService.call(this, {
+    bleno.PrimaryService.call(this, {
         uuid: '6084ded4-fb09-4a69-bbde-d00dd45b49e1',
         characteristics: [
             new PizzaCrustCharacteristic(pizza),
@@ -16,6 +16,6 @@ function PizzaService(pizza) {
     });
 }
 
-inherits(PizzaService, PrimaryService);
+util.inherits(PizzaService, bleno.PrimaryService);
 
-export default PizzaService;
+module.exports = PizzaService;

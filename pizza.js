@@ -1,5 +1,5 @@
-import { inherits } from 'util';
-import { EventEmitter } from 'events';
+const util = require('util')
+const events = require('events')
 
 var PizzaCrust = {
   NORMAL:    0,
@@ -29,7 +29,7 @@ var PizzaBakeResult = {
 
 class Pizza {
   constructor() {
-    EventEmitter.call(this);
+    events.EventEmitter.call(this);
     this.toppings = PizzaToppings.NONE;
     this.crust = PizzaCrust.NORMAL;
   }
@@ -49,19 +49,10 @@ class Pizza {
   }
 }
 
-inherits(Pizza, EventEmitter);
+util.inherits(Pizza, events.EventEmitter);
 
 
-// const _Pizza = Pizza;
-// export { _Pizza as Pizza };
-// const _PizzaToppings = PizzaToppings;
-// export { _PizzaToppings as PizzaToppings };
-// const _PizzaCrust = PizzaCrust;
-// export { _PizzaCrust as PizzaCrust };
-// const _PizzaBakeResult = PizzaBakeResult;
-// export { _PizzaBakeResult as PizzaBakeResult };
-
-export const Pizza 
-export const PizzaToppings
-export const PizzaCrust
-export const PizzaBakeResult
+module.exports.Pizza = Pizza;
+module.exports.PizzaToppings = PizzaToppings;
+module.exports.PizzaCrust = PizzaCrust;
+module.exports.PizzaBakeResult = PizzaBakeResult;

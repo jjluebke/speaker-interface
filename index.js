@@ -1,4 +1,4 @@
-import mpg from "mpg123"
+const mpg = require('mpg123');
 
 
 let player = new mpg.MpgPlayer()

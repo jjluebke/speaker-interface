@@ -1,14 +1,14 @@
-import { inherits } from 'util';
-import { Characteristic, Descriptor } from 'bleno';
+const util = require('util')
+const bleno = require('bleno')
 
 
 class PizzaBakeCharacteristic {
   constructor(pizza) {
-    Characteristic.call(this, {
+    bleno.Characteristic.call(this, {
       uuid: '13330003',
       properties: ['notify', 'write'],
       descriptors: [
-        new Descriptor({
+        new bleno.Descriptor({
           uuid: '2901',
           value: 'Bakes the pizza and notifies when done baking.'
         })
@@ -40,7 +40,7 @@ class PizzaBakeCharacteristic {
   }
 }
 
-inherits(PizzaBakeCharacteristic, Characteristic);
+util.inherits(PizzaBakeCharacteristic, bleno.Characteristic);
 
 
-export default PizzaBakeCharacteristic;
+module.exports = PizzaBakeCharacteristic;

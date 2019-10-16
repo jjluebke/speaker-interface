@@ -1,14 +1,14 @@
-import { inherits } from 'util';
-import { Characteristic, Descriptor } from 'bleno';
-import { PizzaCrust } from './pizza';
+const util = require('util')
+const bleno = require('bleno')
+const pizza = require('./pizza')
 
 class PizzaCrustCharacteristic {
   constructor(pizza) {
-    Characteristic.call(this, {
+    bleno.Characteristic.call(this, {
       uuid: 'a6762767-6ba3-44ca-bea7-2fcbdc55c5f1',
       properties: ['read', 'write'],
       descriptors: [
-        new Descriptor({
+        new bleno.Descriptor({
           uuid: '2901',
           value: 'Gets or sets the type of pizza crust.'
         })
@@ -27,9 +27,9 @@ class PizzaCrustCharacteristic {
     else {
       var crust = data.readUInt8(0);
       switch (crust) {
-        case PizzaCrust.NORMAL:
-        case PizzaCrust.DEEP_DISH:
-        case PizzaCrust.THIN:
+        case pizza.PizzaCrust.NORMAL:
+        case pizza.PizzaCrust.DEEP_DISH:
+        case pizza.PizzaCrust.THIN:
           this.pizza.crust = crust;
           callback(this.RESULT_SUCCESS);
           break;
@@ -52,8 +52,6 @@ class PizzaCrustCharacteristic {
   }
 }
 
-inherits(PizzaCrustCharacteristic, Characteristic);
+util.inherits(PizzaCrustCharacteristic, bleno.Characteristic);
 
-
-
-export default PizzaCrustCharacteristic;
+module.exports = PizzaCrustCharacteristic;
