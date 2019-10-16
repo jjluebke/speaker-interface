@@ -1,3 +1,6 @@
-const { exec } = require("child_process")
+import mpg from "mpg123"
 
-exec("afplay ")
+
+let player = new mpg.MpgPlayer()
+
+player.play(`${__dirname}/audio/bensound-relaxing.mp3`)

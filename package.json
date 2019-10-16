@@ -9,6 +9,7 @@
   "author": "",
   "license": "UNLICENSED",
   "dependencies": {
-    "bleno": "git+https://github.com/abandonware/bleno.git"
+    "bleno": "git+https://github.com/abandonware/bleno.git",
+    "mpg123": "^0.2.3"
   }
 }

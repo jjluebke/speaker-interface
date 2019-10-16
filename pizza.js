@@ -1,5 +1,5 @@
-var util = require('util');
-var events = require('events');
+import { inherits } from 'util';
+import { EventEmitter } from 'events';
 
 var PizzaCrust = {
   NORMAL:    0,
@@ -27,30 +27,41 @@ var PizzaBakeResult = {
   ON_FIRE:    4
 };
 
-function Pizza() {
-  events.EventEmitter.call(this);
-  this.toppings = PizzaToppings.NONE;
-  this.crust = PizzaCrust.NORMAL;
+class Pizza {
+  constructor() {
+    EventEmitter.call(this);
+    this.toppings = PizzaToppings.NONE;
+    this.crust = PizzaCrust.NORMAL;
+  }
+
+  bake(temperature) {
+    var time = temperature * 10;
+    var self = this;
+    console.log('baking pizza at', temperature, 'degrees for', time, 'milliseconds');
+    setTimeout(function () {
+      var result = (temperature < 350) ? PizzaBakeResult.HALF_BAKED :
+        (temperature < 450) ? PizzaBakeResult.BAKED :
+          (temperature < 500) ? PizzaBakeResult.CRISPY :
+            (temperature < 600) ? PizzaBakeResult.BURNT :
+              PizzaBakeResult.ON_FIRE;
+      self.emit('ready', result);
+    }, time);
+  }
 }
 
-util.inherits(Pizza, events.EventEmitter);
+inherits(Pizza, EventEmitter);
 
-Pizza.prototype.bake = function(temperature) {
-  var time = temperature * 10;
-  var self = this;
-  console.log('baking pizza at', temperature, 'degrees for', time, 'milliseconds');
-  setTimeout(function() {
-    var result =
-      (temperature < 350) ? PizzaBakeResult.HALF_BAKED:
-      (temperature < 450) ? PizzaBakeResult.BAKED:
-      (temperature < 500) ? PizzaBakeResult.CRISPY:
-      (temperature < 600) ? PizzaBakeResult.BURNT:
-                            PizzaBakeResult.ON_FIRE;
-    self.emit('ready', result);
-  }, time);
-};
 
-module.exports.Pizza = Pizza;
-module.exports.PizzaToppings = PizzaToppings;
-module.exports.PizzaCrust = PizzaCrust;
-module.exports.PizzaBakeResult = PizzaBakeResult;
+// const _Pizza = Pizza;
+// export { _Pizza as Pizza };
+// const _PizzaToppings = PizzaToppings;
+// export { _PizzaToppings as PizzaToppings };
+// const _PizzaCrust = PizzaCrust;
+// export { _PizzaCrust as PizzaCrust };
+// const _PizzaBakeResult = PizzaBakeResult;
+// export { _PizzaBakeResult as PizzaBakeResult };
+
+export const Pizza 
+export const PizzaToppings
+export const PizzaCrust
+export const PizzaBakeResult
