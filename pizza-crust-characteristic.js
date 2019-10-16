@@ -1,10 +1,10 @@
 var util = require('util');
-var bleno = require('../..');
+var bleno = require('bleno');
 var pizza = require('./pizza');
 
 function PizzaCrustCharacteristic(pizza) {
   bleno.Characteristic.call(this, {
-    uuid: '13333333333333333333333333330001',
+    uuid: '13330001',
     properties: ['read', 'write'],
     descriptors: [
       new bleno.Descriptor({
