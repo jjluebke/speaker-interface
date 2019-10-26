@@ -1,6 +1,28 @@
-const mpg = require('mpg123');
+const bleno = require('bleno')
+const alarm = require('./alarm')
+const AlarmService = require('./alarm-service')
 
+const name = 'PositivelyAwake'
+const alarmService = new AlarmService(new alarm.Alarm())
 
-let player = new mpg.MpgPlayer()
+bleno.on('stateChange', function(state) {
+  if (state === 'poweredOn') {
+    bleno.startAdvertising(name, [alarmService.uuid], function(err) {
+      if (err) {
+        console.log(err)
+      }
+    })
+  }
+  else {
+    bleno.stopAdvertising()
+  }
+})
 
-player.play(`${__dirname}/audio/bensound-relaxing.mp3`)
+bleno.on('advertisingStart', function(err) {
+  if (!err) {
+    console.log('advertising...')
+    bleno.setServices([
+      alarmService
+    ])
+  }
+})
