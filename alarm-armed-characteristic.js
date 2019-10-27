@@ -18,12 +18,17 @@ class AlarmArmedCharacteristic {
 
   onWriteRequest(data, offset, withoutResponse, callback) {
     if (offset) {
+      console.log('Armed: not long')
       callback(this.RESULT_ATTR_NOT_LONG);
     }
     else if (data.length !== 1) {
+      console.log('Armed: not equal 1')
+      console.log(data)
       callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
     }
     else {
+      console.log('Armed: success')
+      console.log(data)
       var armed = data.readUInt8(0);
       this.alarm.armed = armed
       callback(this.RESULT_SUCCESS)
