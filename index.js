@@ -1,4 +1,4 @@
-const bleno = require('bleno')
+const bleno = require('@abandonware/bleno')
 const alarm = require('./alarm')
 const AlarmService = require('./alarm-service')
 

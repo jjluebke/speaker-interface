@@ -1,5 +1,5 @@
 const util = require('util')
-const bleno = require('bleno')
+const bleno = require('@abandonware/bleno')
 
 const AlarmVolumeCharacteristic = require('./alarm-volume-characteristic');
 const AlarmArmedCharacteristic = require('./alarm-armed-characteristic');
