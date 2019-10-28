@@ -29,6 +29,10 @@ class Alarm {
     // player.play(`${__dirname}/audio/bensound-relaxing.mp3`)
   }
 
+  getTime() {
+    return this.time.unix()
+  }
+
   setTime(time) {
     this.time = moment.unix(time)
   }
