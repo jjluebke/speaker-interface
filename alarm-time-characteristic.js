@@ -17,6 +17,9 @@ class AlarmTimeCharacteristic {
   }
 
   onWriteRequest(data, offset, withoutResponse, callback) {
+    console.log("Date data")
+    console.log(data)
+
     if (offset) {
       callback(this.RESULT_ATTR_NOT_LONG);
     }
