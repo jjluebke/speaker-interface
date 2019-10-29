@@ -31,6 +31,12 @@ class AlarmArmedCharacteristic {
       console.log(data)
       var armed = data.readUInt8(0);
       this.alarm.armed = armed
+      if (armed) {
+        this.alarm.scheduleAlarm()
+      } else {
+        this.alarm.stop()
+        
+      }
       callback(this.RESULT_SUCCESS)
     }
   }

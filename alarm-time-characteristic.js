@@ -42,7 +42,7 @@ class AlarmTimeCharacteristic {
     }
     else {
       var data = new Buffer(10);
-      data.writeUInt8(this.alarm.time, 0);
+      data.writeUInt8(this.alarm.getAlarmTime() 0);
       callback(this.RESULT_SUCCESS, data);
     }
   }
