@@ -44,7 +44,7 @@ class Alarm {
   }
 
   setTime(time) {
-    this.time = moment.unix(time)
+    this.time = moment.unix(parseInt(time))
     console.log("set time", this.time)
   }
 

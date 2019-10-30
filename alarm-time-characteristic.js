@@ -25,17 +25,18 @@ class AlarmTimeCharacteristic {
       callback(this.RESULT_ATTR_NOT_LONG);
     }
     else if (data.length !== 10) {
+      console.log('not 10')
       callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
     }
     else {
-      var time = data.readUInt8(0);
+      var time = data.toString('utf8');
+
       console.log('setting time')
-      if (Number.isInteger(time)) {
-        console.log('is interger')
-        this.alarm.setTime(time)
-          callback(this.RESULT_SUCCESS)
-      }
-      callback(this.RESULT_UNLIKELY_ERROR);
+      console.log('time:', time)
+      
+      this.alarm.setTime(time)
+      callback(this.RESULT_SUCCESS)
+      // callback(this.RESULT_UNLIKELY_ERROR);
     }
   }
   
