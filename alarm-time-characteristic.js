@@ -21,6 +21,7 @@ class AlarmTimeCharacteristic {
     console.log(data)
 
     if (offset) {
+      console.log('not long')
       callback(this.RESULT_ATTR_NOT_LONG);
     }
     else if (data.length !== 10) {
@@ -28,8 +29,10 @@ class AlarmTimeCharacteristic {
     }
     else {
       var time = data.readUInt8(0);
+      console.log('setting time')
       if (Number.isInteger(time)) {
-          this.alarm.setTime(time)
+        console.log('is interger')
+        this.alarm.setTime(time)
           callback(this.RESULT_SUCCESS)
       }
       callback(this.RESULT_UNLIKELY_ERROR);
