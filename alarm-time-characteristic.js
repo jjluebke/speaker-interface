@@ -23,7 +23,7 @@ class AlarmTimeCharacteristic {
     if (offset) {
       callback(this.RESULT_ATTR_NOT_LONG);
     }
-    else if (data.length !== 13) {
+    else if (data.length !== 10) {
       callback(this.RESULT_INVALID_ATTRIBUTE_LENGTH);
     }
     else {
@@ -41,8 +41,8 @@ class AlarmTimeCharacteristic {
       callback(this.RESULT_ATTR_NOT_LONG, null);
     }
     else {
-      var data = new Buffer(0);
-      data.writeUInt8(this.alarm.getTime(), 0);
+      var data = new Buffer(10);
+      data.write(this.alarm.getTime().toString());
       callback(this.RESULT_SUCCESS, data);
     }
   }

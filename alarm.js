@@ -33,7 +33,9 @@ class Alarm {
 
   stop() {
     console.log("stop")
-    this.scheduler.cancel()
+    if(this.scheduler) {
+      this.scheduler.cancel()
+    }
     player.stop()
   }
 
@@ -43,6 +45,7 @@ class Alarm {
 
   setTime(time) {
     this.time = moment.unix(time)
+    console.log("set time", this.time)
   }
 
   scheduleAlarm() {
