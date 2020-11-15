@@ -27,8 +27,8 @@ class Alarm {
   }
 
   play() {
-    console.log("play", this.audioFile)
-    player.play(`${__dirname}/audio/bensound-relaxing.mp3`)
+    console.log("play", this.tone)
+    player.play(`${__dirname}/audio/relaxing.mp3`)
   }
 
   stop() {
@@ -49,7 +49,7 @@ class Alarm {
   }
 
   scheduleAlarm() {
-    this.scheduler = schedule.scheduleJob(this.getTime(), this.play)
+    this.scheduler = schedule.scheduleJob(this.time.toDate(), this.play)
   }
 }
 
